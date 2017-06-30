@@ -28,7 +28,7 @@ Now you should have a folder structure that looks something like this:
 
 Finally, to get things rolling, we need to make a couple configuration changes
 inside `laradock` to tell `docker-compose` how we are hosting our application.
-Inside of `ecommerce-kosal`, you should find a file called `.docker.env.example`.
+Inside of `ecommerce-kosal`, you should find a file called `.laradock.env.example`.
 Copy that file into the root of `/project/laradock`. Once it's copied, rename it
 to simply be `.env`.
 
