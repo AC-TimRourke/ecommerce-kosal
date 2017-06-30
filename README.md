@@ -66,7 +66,7 @@ at the directory `/var/www`, which is the web root of our `ecommerce-kosal`
 repository. If you execute the commad `ls`, you'll discover that you're actually
 looking at the Docker-hosted version of the folder `/project/ecommerce-kosal/public`.
 Our `/public` folder is where any and all public requests to our application
-will enter our app. Check out the class `/public/Example.php` for some neat hints.
+will enter our app. Check out the file `/public/index.php` for some neat hints.
 
 **FINALLY** we can install our simple few Composer dependencies to get our
 environment rolling. At first, our only dependency is PHPUnit, but we'll add more
