@@ -5,7 +5,8 @@ namespace App;
 /**
  * Magement of the item in the shopping cart
  */
-class Cart {
+class Cart
+{
     /**
      * Declare properties
      *
@@ -22,6 +23,11 @@ class Cart {
      * @var int $totalItemCount The number of item in the cart
      */
     private $totalItemCount;
+
+    /**
+     * @var str $renderHtml The HTML cart listing layout
+     */
+    private $renderHtml = 'foo';
 
     /**
      * Initialize our properties
@@ -46,16 +52,6 @@ class Cart {
     }
 
     /**
-     * Remove an item from the cart
-     *
-     * @return void
-     */
-    public function removeItem($item)
-    {
-        return false;
-    }
-
-    /**
      * Get list of items as an array
      *
      * @return array Item[]
@@ -74,4 +70,24 @@ class Cart {
     {
         return $this->totalItemCount;
     }
+
+    /**
+     * Remove an item from the cart
+     *
+     * @return void
+     */
+    public function removeItem($item)
+    {
+        return $this->item;
+    }
+
+    /**
+     * Render the cart listing in HTML table
+     *
+     * @return str
+     */
+     public function renderHtml()
+     {
+         return $this->renderHtml;
+     }
 }

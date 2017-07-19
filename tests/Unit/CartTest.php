@@ -25,8 +25,8 @@ class CartTest extends TestCase
     public function testRemoveItem()
     {
         $cart = new Cart();
-        $cart->removeItem('foo');
-        $this->assertEmpty('', $cart->getItems());
+        $cart->removeItem(array('foo'));
+        $this->assertEquals(array('foo'), $cart->getItems());
     }
 
     /**
@@ -38,6 +38,7 @@ class CartTest extends TestCase
     {
         $cart = new Cart();
         $this->assertEquals(array(), $cart->getItems());
+        $this->assertNotEquals(array('foo', 'bar'), $cart->getItems());
     }
 
     /**
@@ -51,5 +52,17 @@ class CartTest extends TestCase
         $cart = new Cart(array(1, 2, 3));
         $cart->getItems();
         $this->assertEquals(3, count($cart->getItems()));
+    }
+
+    /**
+     * Render the cart HTML table
+     *
+     * @covers Cart::getItems
+     */
+    public function testRenderHtml()
+    {
+        $cart = new Cart();
+        $cart->renderHtml('foo');
+        $this->assertEquals('foo', $cart->getItems());
     }
 }
