@@ -12,7 +12,7 @@ class Cart
      *
      * @var array $items A list of product items
      */
-    private $items = [];
+    private $items = ['foo'];
 
     /**
      * @var str $item An item within the cart
