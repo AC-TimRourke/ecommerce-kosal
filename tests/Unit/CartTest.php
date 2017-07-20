@@ -13,8 +13,8 @@ class CartTest extends TestCase
     {
         $cart = new Cart();
         $cart->addItem('foo');
-        $this->assertEquals(array('foo'), $cart->getItems());
-        $this->assertNotEquals(array('bar'), $cart->getItems());
+        $this->assertEquals(['foo'], $cart->getItems());
+        $this->assertNotEquals(['bar'], $cart->getItems());
     }
 
     /**
@@ -24,9 +24,9 @@ class CartTest extends TestCase
      */
     public function testRemoveItem()
     {
-        $cart = new Cart();
-        $cart->removeItem(array('foo'));
-        $this->assertEquals(array('foo'), $cart->getItems());
+        $cart = new Cart(['foo']);
+        $cart->removeItem(['foo']);
+        $this->assertEquals(['foo'], $cart->getItems());
     }
 
     /**
@@ -36,9 +36,9 @@ class CartTest extends TestCase
      */
     public function testGetItems()
     {
-        $cart = new Cart();
-        $this->assertEquals(array(), $cart->getItems());
-        $this->assertNotEquals(array('foo', 'bar'), $cart->getItems());
+        $cart = new Cart(['']);
+        $this->assertEquals([''], $cart->getItems());
+        $this->assertNotEquals(['foo'], $cart->getItems());
     }
 
     /**
@@ -49,9 +49,9 @@ class CartTest extends TestCase
      */
     public function testGetItemsCount()
     {
-        $cart = new Cart(array(1, 2, 3));
+        $cart = new Cart([0, 1, 2, 3]);
         $cart->getItems();
-        $this->assertEquals(3, count($cart->getItems()));
+        $this->assertNotEquals(3, count($cart->getItems()));
     }
 
     /**
@@ -61,8 +61,8 @@ class CartTest extends TestCase
      */
     public function testRenderHtml()
     {
-        $cart = new Cart();
-        $cart->renderHtml('foo');
+        $cart = new Cart('foo');
+        $cart->renderHtml();
         $this->assertEquals('foo', $cart->getItems());
     }
 }
