@@ -36,9 +36,8 @@ class CartTest extends TestCase
      */
     public function testGetItems()
     {
-        $cart = new Cart(['']);
-        $this->assertEquals([''], $cart->getItems());
-        $this->assertNotEquals(['foo'], $cart->getItems());
+        $cart = new Cart();
+        $this->assertEquals([], $cart->getItems());
     }
 
     /**
@@ -50,8 +49,7 @@ class CartTest extends TestCase
     public function testGetItemsCount()
     {
         $cart = new Cart([0, 1, 2, 3]);
-        $cart->getItems();
-        $this->assertNotEquals(3, count($cart->getItems()));
+        $this->assertEquals(4, count($cart->getItems()));
     }
 
     /**
@@ -61,8 +59,7 @@ class CartTest extends TestCase
      */
     public function testRenderHtml()
     {
-        $cart = new Cart('foo');
-        $cart->renderHtml();
-        $this->assertEquals('foo', $cart->getItems());
+        $cart = new Cart();
+        $this->assertEquals('foo', $cart->renderHtml());
     }
 }

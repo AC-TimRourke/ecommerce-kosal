@@ -11,8 +11,7 @@ class ItemTest extends TestCase
      */
     public function testRenderHtml()
     {
-        $cart = new Item('foo');
-        $cart->renderHtml();
+        $cart = new Item();
         $this->assertEquals('foo', $cart->renderHtml());
     }
 }

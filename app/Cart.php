@@ -12,7 +12,7 @@ class Cart
      *
      * @var array $items A list of product items
      */
-    private $items = ['foo'];
+    private $items = [];
 
     /**
      * @var str $item An item within the cart
@@ -25,9 +25,9 @@ class Cart
     private $totalItemCount;
 
     /**
-     * @var str $renderHtml The HTML cart listing layout
+     * @var str $htmlTable The HTML cart listing layout
      */
-    private $renderHtml = 'foo';
+    private $htmlTable = 'foo';
 
     /**
      * Initialize our properties
@@ -68,7 +68,7 @@ class Cart
      */
     public function getItemsCount()
     {
-        return $this->totalItemCount;
+        return count($this->totalItemCount);
     }
 
     /**
@@ -88,6 +88,6 @@ class Cart
      */
      public function renderHtml()
      {
-         return $this->renderHtml;
+         return $this->htmlTable;
      }
 }

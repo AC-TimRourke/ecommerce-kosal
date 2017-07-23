@@ -30,9 +30,9 @@ class Item
     public $image;
 
     /**
-     * @var str $renderHtml The HTML cart listing layout
+     * @var str $htmlTable The HTML cart listing layout
      */
-    public $renderHtml = 'foo';
+    public $htmlTable = 'foo';
 
     /**
      * Initialize our properties
@@ -55,6 +55,6 @@ class Item
      */
      public function renderHtml()
      {
-         return $this->renderHtml;
+         return $this->htmlTable;
      }
 }
