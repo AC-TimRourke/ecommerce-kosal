@@ -7,7 +7,7 @@ class CartTest extends TestCase
     /**
      * If item is added to the cart
      *
-     * @covers Cart::getItems
+     * @covers Cart::addItem
      */
     public function testAddItem()
     {
@@ -20,13 +20,21 @@ class CartTest extends TestCase
     /**
      * Remove an item from the cart
      *
-     * @covers Cart::getItems
+     * @covers Cart::removeItem
      */
     public function testRemoveItem()
     {
         $cart = new Cart(['foo']);
-        $cart->removeItem(['foo']);
-        $this->assertEquals(['foo'], $cart->getItems());
+        $cart->removeItem('foo');
+        $this->assertEquals([], $cart->getItems());
+
+        $cart = new Cart(['foo', 'bar', 'horse', 3]);
+        $cart->removeItem(3);
+        $this->assertEquals(['foo', 'bar', 'horse'], $cart->getItems());
+
+        $cart = new Cart(['foo', 'bar', 'horse', 'bar', 'horse', 3]);
+        $cart->removeItem('foo');
+        $this->assertEquals(['bar', 'horse', 'bar', 'horse', 3], $cart->getItems());
     }
 
     /**
@@ -38,6 +46,9 @@ class CartTest extends TestCase
     {
         $cart = new Cart();
         $this->assertEquals([], $cart->getItems());
+
+        $cart = new Cart([1, 2, 3]);
+        $this->assertEquals([1, 2, 3], $cart->getItems());
     }
 
     /**
@@ -49,17 +60,14 @@ class CartTest extends TestCase
     public function testGetItemsCount()
     {
         $cart = new Cart([0, 1, 2, 3]);
-        $this->assertEquals(4, count($cart->getItems()));
+        $this->assertEquals(4, $cart->getItemsCount());
     }
 
-    /**
-     * Render the cart HTML table
-     *
-     * @covers Cart::getItems
-     */
-    public function testRenderHtml()
+    public function testUpdateQuantity()
     {
-        $cart = new Cart();
-        $this->assertEquals('foo', $cart->renderHtml());
+        $cart = new Cart(['foo']);
+        $this->assertEquals(['foo'], $cart->getItems());
+        $cart->updateQuantity('foo', 6);
+        $this->assertEquals(['foo', 'foo', 'foo', 'foo', 'foo', 'foo', 'foo'], $cart->getItems());
     }
 }

@@ -15,21 +15,6 @@ class Cart
     private $items = [];
 
     /**
-     * @var str $item An item within the cart
-     */
-    private $item;
-
-    /**
-     * @var int $totalItemCount The number of item in the cart
-     */
-    private $totalItemCount;
-
-    /**
-     * @var str $htmlTable The HTML cart listing layout
-     */
-    private $htmlTable = 'foo';
-
-    /**
      * Initialize our properties
      *
      * @param array $items
@@ -68,26 +53,28 @@ class Cart
      */
     public function getItemsCount()
     {
-        return count($this->totalItemCount);
+        return count($this->items);
     }
 
     /**
      * Remove an item from the cart
      *
+     * @param mixed $item Paramter is of any type of data
      * @return void
      */
     public function removeItem($item)
     {
-        return $this->item;
+        $this->items = array_values(array_diff($this->items, array($item)));
     }
 
-    /**
-     * Render the cart listing in HTML table
-     *
-     * @return str
-     */
-     public function renderHtml()
-     {
-         return $this->htmlTable;
-     }
+    public function updateQuantity($item, $qty)
+    {
+        // Count the number of $items in array
+        $filteredItems = array_filter($this->items, function($value) use ($item) { return $value === $item; });
+        print_r($filteredItems);
+
+        for ($i = 0; $i < $qty; $i++) {
+            $this->addItem($item);
+        }
+    }
 }
