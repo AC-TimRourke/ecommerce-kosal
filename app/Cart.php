@@ -3,7 +3,7 @@
 namespace App;
 
 /**
- * Magement of the item in the shopping cart
+ * Management of the item in the shopping cart
  */
 class Cart
 {
@@ -70,10 +70,10 @@ class Cart
     public function updateQuantity($item, $qty)
     {
         // Count the number of $items in array
-        $filteredItems = array_filter($this->items, function($value) use ($item) { return $value === $item; });
-        print_r($filteredItems);
+        array_filter( $this->items, function($value) use ($item) { return $value === $item; } );
 
         for ($i = 0; $i < $qty; $i++) {
+            // Push new item into $items array
             $this->addItem($item);
         }
     }
