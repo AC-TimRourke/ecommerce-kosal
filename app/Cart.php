@@ -59,7 +59,7 @@ class Cart
     /**
      * Remove an item from the cart
      *
-     * @param mixed $item Paramter is of any type of data
+     * @param mixed $item Parameter is of any type of data
      * @return void
      */
     public function removeItem($item)
