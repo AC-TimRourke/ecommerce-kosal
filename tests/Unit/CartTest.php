@@ -63,11 +63,21 @@ class CartTest extends TestCase
         $this->assertEquals(4, $cart->getItemsCount());
     }
 
+    /**
+     * Update the quantity for a given item in the cart
+     *
+     * @covers Cart::getItems
+     * @depends testGetItems
+     */
     public function testUpdateQuantity()
     {
         $cart = new Cart(['foo']);
         $this->assertEquals(['foo'], $cart->getItems());
         $cart->updateQuantity('foo', 6);
-        $this->assertEquals(['foo', 'foo', 'foo', 'foo', 'foo', 'foo', 'foo'], $cart->getItems());
+        $this->assertEquals(['foo', 'foo', 'foo', 'foo', 'foo', 'foo'], $cart->getItems());
+
+        $cart = new Cart(['cat', 'cat', 'cat', 'dog']);
+        $cart->updateQuantity('cat', 1);
+        $this->assertEquals(['cat', 'dog'], $cart->getItems());
     }
 }

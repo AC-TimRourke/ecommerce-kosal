@@ -69,10 +69,9 @@ class Cart
 
     public function updateQuantity($item, $qty)
     {
-        // Count the number of $items in array
         array_filter( $this->items, function($value) use ($item) { return $value === $item; } );
 
-        for ($i = 0; $i < $qty; $i++) {
+        for ($i = 1; $i < $qty; $i++) {
             // Push new item into $items array
             $this->addItem($item);
         }
