@@ -30,11 +30,11 @@ class CartTest extends TestCase
 
         $cart = new Cart(['foo', 'bar', 'horse', 3]);
         $cart->removeItem(3);
-        $this->assertEquals(['foo', 'bar', 'horse'], $cart->getItems());
+        $this->assertEquals(['bar', 'foo', 'horse'], $cart->getItems());
 
         $cart = new Cart(['foo', 'bar', 'horse', 'bar', 'horse', 3]);
         $cart->removeItem('foo');
-        $this->assertEquals(['bar', 'horse', 'bar', 'horse', 3], $cart->getItems());
+        $this->assertEquals(['bar', 'bar', 'horse', 'horse', 3], $cart->getItems());
     }
 
     /**
@@ -73,11 +73,15 @@ class CartTest extends TestCase
     {
         $cart = new Cart(['foo']);
         $this->assertEquals(['foo'], $cart->getItems());
+
         $cart->updateQuantity('foo', 6);
         $this->assertEquals(['foo', 'foo', 'foo', 'foo', 'foo', 'foo'], $cart->getItems());
 
-        $cart = new Cart(['cat', 'cat', 'cat', 'dog']);
-        $cart->updateQuantity('cat', 1);
-        $this->assertEquals(['cat', 'dog'], $cart->getItems());
+        $cart->updateQuantity('foo', 4);
+        $this->assertEquals(['foo', 'foo', 'foo', 'foo'], $cart->getItems());
+
+        $cart = new Cart(['foo', 'bar', 'foobar']);
+        $cart->updateQuantity('foo', 4);
+        $this->assertEquals(['bar', 'foo', 'foo', 'foo', 'foo', 'foobar'], $cart->getItems());
     }
 }

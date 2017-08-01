@@ -43,6 +43,7 @@ class Cart
      */
     public function getItems()
     {
+        sort($this->items);
         return $this->items;
     }
 
@@ -67,13 +68,22 @@ class Cart
         $this->items = array_values(array_diff($this->items, array($item)));
     }
 
+    /**
+     * Update an item in the cart to the quantity specified in the param
+     *
+     * @param  mixed $item The item to update
+     * @param  int $qty  The item quantity
+     * @return void
+     */
     public function updateQuantity($item, $qty)
     {
-        array_filter( $this->items, function($value) use ($item) { return $value === $item; } );
+        // Remove the item from the array
+        $this->removeItem($item);
 
-        for ($i = 1; $i < $qty; $i++) {
-            // Push new item into $items array
+        // Push new item into $items array
+        for ($i = 0; $i < $qty; $i++) {
             $this->addItem($item);
         }
+
     }
 }
